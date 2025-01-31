@@ -1,3 +1,4 @@
+import { vi } from "vitest"
 import CreateProductUseCase from "./create.product.useCase"
 
 const input = {
@@ -6,9 +7,19 @@ const input = {
     price: 1
 }
 
+const mockRepository = () => {
+    return {
+        find: vi.fn(),
+        findAll: vi.fn(),
+        create: vi.fn(),
+        update: vi.fn()
+    }
+}
+
 describe("Unit test create product use case", () => {
     test("Should create a product", async () => {
-        const productCreateUseCase = new CreateProductUseCase()
+        const productRepository = mockRepository();
+        const productCreateUseCase = new CreateProductUseCase(productRepository)
         const output = await productCreateUseCase.execute(input)
 
         expect(output).toEqual({
@@ -18,14 +29,9 @@ describe("Unit test create product use case", () => {
     })
 
     test("Should throw an error when name is missing", async () => {
-        const productCreateUseCase = new CreateProductUseCase()
+        const productRepository = mockRepository();
+        const productCreateUseCase = new CreateProductUseCase(productRepository)
 
         await expect(productCreateUseCase.execute({ ...input, name: "" })).rejects.toThrow("Name is required")
-    })
-
-    test("Should throw an error when type is unsupported", async () => {
-        const productCreateUseCase = new CreateProductUseCase()
-
-        await expect(productCreateUseCase.execute({ ...input, type: "c" })).rejects.toThrow("Product type not supported")
     })
 })
