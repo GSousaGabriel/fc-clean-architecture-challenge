@@ -3,20 +3,26 @@ import Product from "./product";
 describe("Product unit tests", () => {
   test("should throw error when id is empty", () => {
     expect(() => {
-      const product = new Product("", "Product 1", 100);
-    }).toThrowError("Id is required");
+      new Product("", "Product 1", 100);
+    }).toThrow("Id is required");
   });
 
   test("should throw error when name is empty", () => {
     expect(() => {
-      const product = new Product("123", "", 100);
-    }).toThrowError("Name is required");
+      new Product("123", "", 100);
+    }).toThrow("product: Name is required");
   });
 
   test("should throw error when price is less than zero", () => {
     expect(() => {
-      const product = new Product("123", "Name", -1);
-    }).toThrowError("Price must be greater than zero");
+      new Product("123", "Name", -1);
+    }).toThrow("Price must be greater than zero");
+  });
+
+  test("should throw error when there is nothing filled", () => {
+    expect(() => {
+      new Product("", "", -1);
+    }).toThrow("product: Id is required;product: Name is required;product: Price must be greater than zero");
   });
 
   test("should change name", () => {
