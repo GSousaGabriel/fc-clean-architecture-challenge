@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 import Product from "../../../domain/product/entity/product";
-import ListProductUseCase from "./find.product.useCase";
+import ListProductUseCase from "./list.product.useCase";
 
 const product = new Product("123", "product1", 1)
 const product2 = new Product("1234", "product2", 2)

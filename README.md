@@ -28,3 +28,11 @@ Adicione um teste que acumule dois erros ao mesmo tempo.
 OBS: Não deixe de verificar se todos os testes ainda estão passando.
 
 * A linguagem de programação para este desafio é TypeScript
+
+
+**Como executar: ** Uma diferença na execução do projeto é que foi usado o vitest para realização dos testes e o comando para executa-lo é:
+
+'npx vitest': para rodar todos os testes;
+'npx vitest --dir path': para rodar os testes por pasta;
+
+* A linguagem de programação para este desafio é TypeScript
